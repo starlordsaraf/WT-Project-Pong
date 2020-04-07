@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/pong/node_modules
+/pong/.pnp
+/pong/.pnp.js
+
+# testing
+/pong/coverage
+
+# production
+/pong/build
+
+# misc
+/pong/.DS_Store
+/pong/.env.local
+/pong/.env.development.local
+/pong/.env.test.local
+/pong/.env.production.local
+
+/pong/npm-debug.log*
+/pong/yarn-debug.log*
+/pong/yarn-error.log*

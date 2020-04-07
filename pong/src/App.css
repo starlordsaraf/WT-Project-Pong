@@ -1,0 +1,46 @@
+.logo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  margin-top: -80px;
+}
+
+body{
+  background-color: black;
+}
+
+.login_button{
+  background-color: #e7e7e7; 
+  color: gray;
+  font-size: 24px;
+  border-radius: 12px;
+  padding: 24px 60px;
+  margin-left: 670px;
+}
+
+.register_button{
+  background-color: #e7e7e7; 
+  color: grey;
+  font-size: 24px;
+  border-radius: 12px;
+  padding: 24px 60px;
+  margin:5px;
+}
+
+.register_button:hover,.login_button:hover{
+  background-color: gray;
+  color: white;
+}
+
+a{
+  color: grey;
+}
+
+a:hover{
+  color: white;
+}
+
+h1{
+  color: white;
+}
