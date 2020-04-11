@@ -9,7 +9,7 @@ class Register extends Component {
     return (
     <Zoom top>
         <div className="register_div">
-            <form action="http://localhost:5000/login" method="POST">
+            <form action="http://localhost:5000/register" method="POST">
                 <input type="email" id="email" name="email" placeholder="Email" /><br></br>
                 <input type="text" id="username" name="username" placeholder="Username" /><br></br>
                 <input type="password" id="password" name="password" placeholder="Password"/><br></br>
