@@ -8,6 +8,7 @@ import Game from './game.js'
 import Train from './train.js'
 import Comp from './comp.js'
 import Scores from './scores.js'
+import AllScores from './allscores.js'
 import * as serviceWorker from './serviceWorker';
 
 
@@ -20,10 +21,11 @@ ReactDOM.render(
       <Route exact path="/" component={App} /> 
       <Route exact path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      <Route path="/game" component={Game} />
+      <Route path="/game/:username" component={Game} />
       <Route path="/train" component={Train} />
       <Route path="/comp" component={Comp} />
       <Route path="/scores" component={Scores} />
+      <Route path="/allscores" component={AllScores} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

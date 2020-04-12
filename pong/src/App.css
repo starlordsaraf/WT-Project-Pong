@@ -19,7 +19,7 @@ body{
   margin-left: 670px;
 }
 
-.register_button,.train_button,.comp_button,.scores_button{
+.register_button,.train_button,.comp_button,.scores_button,.yourscores_button,.allscores_button,.logout_button{
   background-color: #e7e7e7; 
   color: grey;
   font-size: 24px;
@@ -30,11 +30,11 @@ body{
 
 
 .options_buttons{
-  margin-left: 450px;
+  margin-left: 360px;
   margin-top: 350px;
 }
 
-.register_button:hover,.login_button:hover,.train_button:hover,.scores_button:hover,.comp_button:hover{
+.register_button:hover,.login_button:hover,.train_button:hover,.scores_button:hover,.comp_button:hover,.allscores_button:hover,.yourscores_button:hover.logout_button:hover{
   background-color: gray;
   color: white;
 }
@@ -50,3 +50,35 @@ a:hover{
 h1{
   color: white;
 }
+
+.score_head,.train_head,.comp_head{
+  background-color: #e7e7e7; 
+  color: grey;
+  font-size: 24px;
+  border-radius: 12px;
+  padding: 24px 24px;
+  margin-left: 700px;
+  text-align: center;
+  width: 300px;
+}
+
+.score_nav{
+  margin-left: 250px;
+}
+
+.train_nav{
+  margin-left: 470px;
+}
+
+.comp_nav{
+  margin-left: 540px;
+}
+
+
+td, th {
+  text-align: left;
+  padding: 8px;
+  background-color: #e7e7e7;
+
+}
+

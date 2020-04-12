@@ -19,7 +19,7 @@ def login():
     data = {"username":username, "password":password}
     user_pwd_exists = mongo.db.users.find(data).count()
     if(user_pwd_exists):
-        return redirect('http://localhost:3000/game')
+        return redirect('http://localhost:3000/game/'+username)
     else:
         user_exists = mongo.db.users.find({"username":username}).count()
         if(user_exists):
@@ -39,6 +39,31 @@ def register():
     else:
         mongo.db.users.insert(data)
         return redirect('http://localhost:3000/login')
+
+
+@app.route('/scores/<username>', methods=['GET'])
+def get_scores(username):
+    result = mongo.db.users.find({"username":username},{"stats":1,"_id":0})[0]
+    print(dumps(result))
+    response = Response(dumps(result),mimetype='application/json')
+    response.headers["Access-Control-Allow-Origin"]= "*"
+    return response
+
+
+@app.route('/allscores',methods=['GET'])
+def allscores():
+    res = mongo.db.users.find({},{"stats":1,"_id":0,"username":1})
+    result =[]
+    for doc in res:
+        for scores in doc.get("stats"):
+            data = {"username":doc.get("username"), "neural network":scores.get("neural network"),
+                "win": scores.get("win"), "lose": scores.get("lose")}
+            result.append(data)
+
+    print(dumps(result))
+    response = Response(dumps(result),mimetype='application/json')
+    response.headers["Access-Control-Allow-Origin"]= "*"
+    return response
 
 if __name__ == '__main__':	
 	app.debug=True
