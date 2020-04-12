@@ -1,4 +1,4 @@
-from flask import Flask, render_template,jsonify,request,abort,flash
+from flask import Flask, render_template,jsonify,request,abort,flash, redirect
 from flask_pymongo import PyMongo
 import requests
 import json
@@ -19,7 +19,7 @@ def login():
     data = {"username":username, "password":password}
     user_pwd_exists = mongo.db.users.find(data).count()
     if(user_pwd_exists):
-        return "Valid User"
+        return redirect('http://localhost:3000/game')
     else:
         user_exists = mongo.db.users.find({"username":username}).count()
         if(user_exists):
@@ -32,13 +32,13 @@ def register():
     email = request.form["email"]
     username = request.form["username"]
     password = request.form["password"]
-    data = {"email":email, "username":username, "password":password}
+    data = {"email":email, "username":username, "password":password, "stats":[]}
     user_exists = mongo.db.users.find({"username":username}).count()
     if(user_exists):
         return Response("User already exists",status=400, mimetype='application/json')
     else:
         mongo.db.users.insert(data)
-        return "New User "+username+" created"
+        return redirect('http://localhost:3000/login')
 
 if __name__ == '__main__':	
 	app.debug=True
