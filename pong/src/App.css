@@ -19,7 +19,7 @@ body{
   margin-left: 670px;
 }
 
-.register_button{
+.register_button,.train_button,.comp_button,.scores_button{
   background-color: #e7e7e7; 
   color: grey;
   font-size: 24px;
@@ -28,7 +28,13 @@ body{
   margin:5px;
 }
 
-.register_button:hover,.login_button:hover{
+
+.options_buttons{
+  margin-left: 450px;
+  margin-top: 350px;
+}
+
+.register_button:hover,.login_button:hover,.train_button:hover,.scores_button:hover,.comp_button:hover{
   background-color: gray;
   color: white;
 }

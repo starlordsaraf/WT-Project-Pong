@@ -4,6 +4,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Login from './login.js'
 import Register from './register.js'
+import Game from './game.js'
+import Train from './train.js'
+import Comp from './comp.js'
+import Scores from './scores.js'
 import * as serviceWorker from './serviceWorker';
 
 
@@ -16,6 +20,10 @@ ReactDOM.render(
       <Route exact path="/" component={App} /> 
       <Route exact path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route path="/game" component={Game} />
+      <Route path="/train" component={Train} />
+      <Route path="/comp" component={Comp} />
+      <Route path="/scores" component={Scores} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')
