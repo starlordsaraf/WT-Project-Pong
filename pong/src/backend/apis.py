@@ -65,6 +65,11 @@ def allscores():
     response.headers["Access-Control-Allow-Origin"]= "*"
     return response
 
+@app.route('/saveNN', methods=['POST'])
+def save_nn():
+    print(request.get_json())
+    return Response({}, status=204)
+
 if __name__ == '__main__':	
 	app.debug=True
 	app.run()

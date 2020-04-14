@@ -4,7 +4,7 @@ import Zoom from 'react-reveal/Zoom';
 
 class Game extends Component {
   render() {
-    var username = this.props.match.params.username
+    var username = this.props.match.params.username;
     sessionStorage.setItem("username", username);
     return (
     <Zoom bottom cascade>
