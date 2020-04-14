@@ -5,25 +5,28 @@ let leftscore = 0;
 let rightscore = 0;
 
 const MaxScore = 5;
-let WinCallback = null;
+
 
 // WinCallback = function(params) {
 //   console.log(params);
 // }
 
-let pcNN = null;
+WinCallback = null;
+pcNNURL = null;
+pcNN = null;
 
 pongsingle_sketch = function (_p5) {
   window.p5inst = _p5;
 
   _p5.preload = function () {
     // load nn
-    pcNN = _p5.loadJSON("pcnn.json");
+    // pcNN = _p5.loadJSON(pcNNURL); // TODO: put default one here
+    // console.log(pcNN);
   }
 
   _p5.setup = function () {
     _p5.createCanvas(600, 400);
-    ding = _p5.loadSound('data/ding.mp3');
+    // ding = _p5.loadSound('data/ding.mp3');
     puck = new Puck_Single();
     left = new Paddle_Single(true);
     right = new Paddle_Single(false); // store nn for this

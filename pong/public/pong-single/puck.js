@@ -64,13 +64,13 @@ class Puck_Single {
     }
 
     if (this.x - this.r > p5inst.width) {
-      ding.play();
+      // ding.play();
       leftscore++;
       this.reset();
     }
 
     if (this.x + this.r < 0) {
-      ding.play();
+      // ding.play();
       rightscore++;
       this.reset();
     }

@@ -60,7 +60,7 @@ def allscores():
     for doc in res:
         for scores in doc.get("stats"):
             data = {"username": doc.get("username"), "neural network": scores.get("neural network"),
-                    "win": scores.get("win"), "lose": scores.get("lose")}
+                    "win": scores.get("win"), "lost": scores.get("lost")}
             result.append(data)
 
     print(dumps(result))
@@ -68,6 +68,39 @@ def allscores():
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
 
+@app.route('/setscore', methods=['POST'])
+def set_score():
+    data = request.get_json()
+    username = data.get("username")
+    nn_name = data.get("neural network")
+    win = data.get("win")
+    lost = data.get("lost")
+
+    playerstats = mongo.db.users.find_one({ "username": username }, {'stats':1})
+    playerstats = playerstats["stats"]
+
+    updated = 0
+    for doc in playerstats:
+        if(doc.get("neural network") == nn_name):
+            doc["win"] += win
+            doc["lost"] += lost
+            updated = 1
+            break
+    
+    if updated == 0:
+        playerstats.append(
+            {
+                "neural network": nn_name,
+                "win": win,
+                "lost": lost
+            }
+        )
+
+    mongo.db.users.update_one({ 'username': username }, {
+        '$set': { 'stats': playerstats }
+    })
+
+    return Response({}, 204)
 
 @app.route('/saveNN', methods=['POST'])
 def save_nn():
@@ -85,6 +118,18 @@ def save_nn():
     print(res)
     return Response({}, status=204)
 
+@app.route('/getNN/<nnName>', methods=['GET'])
+def get_nn(nnName):
+    res = mongo.db.nn.find_one({'name':nnName})
+    return Response(dumps(res['nn']), mimetype='application/text')
+
+@app.route('/listNN', methods=['GET'])
+def list_nn():
+    res = mongo.db.nn.find({}, {'name':1})
+    nnNames = []
+    for doc in res:
+        nnNames.append(doc.get('name'))
+    return Response(dumps(nnNames))
 
 if __name__ == '__main__':
     app.debug = True

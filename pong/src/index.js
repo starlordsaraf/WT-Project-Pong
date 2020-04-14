@@ -23,7 +23,7 @@ ReactDOM.render(
       <Route path="/register" component={Register} />
       <Route path="/game/:username" component={Game} />
       <Route path="/train" component={Train} />
-      <Route path="/comp" component={Comp} />
+      <Route path="/comp/:nnName" component={Comp} />
       <Route path="/scores" component={Scores} />
       <Route path="/allscores" component={AllScores} />
     </Switch>
