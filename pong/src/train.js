@@ -40,9 +40,14 @@ class SaveInfo extends React.Component {
     super(props);
     
     this.sendNN = this.sendNN.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      value: ''
+    };
   }
 
-  sendNN() {
+  sendNN(event) {
     var self = this;
     console.log(this);
     fetch('/saveNN', {
@@ -51,19 +56,35 @@ class SaveInfo extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        'name': 'test',
+        'name': this.state.value,
         'nn': self.props.airef.current.myP5.getBestNN()
       })
     }).then((resp) => {
       console.log(resp);
+      if(resp.ok)
+      {
+        document.querySelector("#submitted").innerHTML = `Submitted neural network ${this.state.value}`;
+      }
+    });
+    event.preventDefault();
+  }
+
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
     });
   }
 
   render() {
     return (
       <div style={{ display: 'inline-block', float: 'left' }}>
-        {/* save button */}
-        <button onClick={this.sendNN}>Save</button>
+        <form onSubmit={this.sendNN}>
+          <input type="text" value={this.nnName} placeholder="Enter name for neural network" onChange={this.handleChange}></input>Name
+          <input type="submit" value="Save"></input>
+        </form>
+        <div>
+          <h3 id="submitted" className="text"></h3>
+        </div>
       </div>
     );
   }
